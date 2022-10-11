@@ -9,10 +9,6 @@ struct Cli {
     path: std::path::PathBuf,
 }
 
-
-#[derive(Debug)]
-struct CustomError(String);
-
 fn main() -> Result<()> {
     let path = "test.txt";
     let content = std::fs::read_to_string(path)
