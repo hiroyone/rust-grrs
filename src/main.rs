@@ -1,3 +1,5 @@
+use std::{time::Duration, thread};
+
 use clap::Parser;
 use anyhow::{Context, Result};
 /// Search for a pattern in a file and display the lines that contain it.
@@ -10,12 +12,13 @@ struct Cli {
 }
 
 fn main() {
-    use std::io::{self, Write};
-
-    let stdout = io::stdout(); // get the global stdout entity
-    let mut handle = io::BufWriter::new(stdout); // optional: wrap that handle in a buffer
-    writeln!(handle, "foo: {}", 42); // add `?` if you care about errors here
-    
+    let pb = indicatif::ProgressBar::new(100);
+    for i in 0..100 {
+        thread::sleep(Duration::from_secs(2));
+        pb.println(format!("[+] finished #{}", i));
+        pb.inc(1);
+    }
+    pb.finish_with_message("done");
 }
 
 
