@@ -9,12 +9,13 @@ struct Cli {
     path: std::path::PathBuf,
 }
 
-fn main() -> Result<()> {
-    let path = "test.txt";
-    let content = std::fs::read_to_string(path)
-        .with_context(|| format!("could not read file `{}`", path))?;
-    println!("file content: {}", content);
-    Ok(())
+fn main() {
+    use std::io::{self, Write};
+
+    let stdout = io::stdout(); // get the global stdout entity
+    let mut handle = io::BufWriter::new(stdout); // optional: wrap that handle in a buffer
+    writeln!(handle, "foo: {}", 42); // add `?` if you care about errors here
+    
 }
 
 
