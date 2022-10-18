@@ -1,6 +1,7 @@
 use anyhow::{Context, Result};
 use clap::Parser;
-use libs::find_matches;
+use matchers::find_matches;
+
 
 /// Search for a pattern in a file and display the lines that contain it.
 #[derive(Parser)]
